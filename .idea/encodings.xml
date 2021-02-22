@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/Easy Data Store/src/main/java/com/mukesh/easydatastore/calldatastore/easydatastore/s.kt" charset="US-ASCII" />
+    <file url="file://$PROJECT_DIR$/EasyDataStoreMethods/consumer-rules.pro" charset="US-ASCII" />
+    <file url="file://$PROJECT_DIR$/EasyDataStoreMethods/src/main/java/com/mukesh/easydatastoremethods/calldatastore/CallDataStore.kt" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/EasyDataStoreMethods/src/main/java/com/mukesh/easydatastoremethods/easydatastore/EasyDataStore.kt" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/EasyDataStoreMethods/src/main/java/com/mukesh/easydatastoremethods/getpreferencekey/GetPreferenceKey.kt" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/EasyDataStoreMethods/src/main/java/com/mukesh/easydatastoremethods/preferencekeytype/PreferenceKeyType.kt" charset="US-ASCII" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/mukesh/easydatastore/AppController.kt" charset="US-ASCII" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/mukesh/easydatastore/MainActivity.kt" charset="US-ASCII" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/mukesh/easydatastore/PreferencesKey.kt" charset="US-ASCII" />
+  </component>
+</project>
