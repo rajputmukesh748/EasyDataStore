@@ -44,27 +44,26 @@ library and access all function to store data without any error or issues.
 <h6>Implementation</h6>
  1.) Initialize Data Store in Application class 
           
-    class AppController : Application() {
-    
-        override fun onCreate() {
-            super.onCreate()
-            CallDataStore.initializeDataStore(
-                context = applicationContext,
-                dataBaseName = "DemoAppData"
-            )
-        }
-    
-    }
+     class AppController : Application() {
+
+         override fun onCreate() {
+             super.onCreate()
+             CallDataStore.initializeDataStore(
+                 context = applicationContext,
+                 dataBaseName = "DemoAppData"
+             )
+         }
+     }
     
     
  2.) Add this class in your manifest file
  
-     <application
-             android:name=".AppController"
-             ....
-             >
-             .....
-     </application>
+      <application
+              android:name=".AppController"
+              ....
+              >
+              .....
+      </application>
      
      
  3.) Create a Preferences keys for store data in particular key.
@@ -72,34 +71,34 @@ library and access all function to store data without any error or issues.
        You just need to first enter which data type key used for store data.
        Then call getDataPreferenceKey() function with pass unique key in string.  
  
-    val INT_KEY = Int.getDataPreferenceKey("loginData")
-    val DOUBLE_KEY = Double.getDataPreferenceKey("loginData")
-    val STRING_KEY = String.getDataPreferenceKey("loginData")
-    val BOOLEAN_KEY = Boolean.getDataPreferenceKey("loginData")
-    val FLOAT_KEY = Float.getDataPreferenceKey("loginData")
-    val LONG_KEY = Long.getDataPreferenceKey("loginData")
+       val INT_KEY = Int.getDataPreferenceKey("loginData")
+       val DOUBLE_KEY = Double.getDataPreferenceKey("loginData")
+       val STRING_KEY = String.getDataPreferenceKey("loginData")
+       val BOOLEAN_KEY = Boolean.getDataPreferenceKey("loginData")
+       val FLOAT_KEY = Float.getDataPreferenceKey("loginData")
+       val LONG_KEY = Long.getDataPreferenceKey("loginData")
     
     
  4.) For store data in Data Store
  
-    CallDataStore.storeData(key = STRING_KEY, storeData = storeData)
+     CallDataStore.storeData(key = STRING_KEY, storeData = storeData)
     
     
  5.) Get stored data with key
  
-     CallDataStore.getPreferenceData(STRING_KEY){
-            Log.e("skdnaskndkasdasd", "${it}")
-     }
+      CallDataStore.getPreferenceData(STRING_KEY){
+           Log.e("skdnaskndkasdasd", "${it}")
+      }
      
      
  6.) Clear unique key data from app
  
-     CallDataStore.clearKeyData(STRING_KEY)
+      CallDataStore.clearKeyData(STRING_KEY)
     
      
  7.) Clear all preference data from app. They will clear each and every key data.
  
-    CallDataStore.clearAllData()
+     CallDataStore.clearAllData()
     
     
  <b>Thank you.</b>
