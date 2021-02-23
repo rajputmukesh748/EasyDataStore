@@ -29,15 +29,15 @@ library and access all function to store data without any error or issues.
       Add it in your root build.gradle at the end of repositories:
 
        allprojects {
-        repositories {
-         ...
-         maven { url 'https://jitpack.io' }
-        }
+         repositories {
+           ...
+           maven { url 'https://jitpack.io' }
+         }
        }
        
       Step 2. Add the dependency
        dependencies {
-               implementation 'com.github.rajputmukesh748:EasyDataStore:Tag'
+               implementation 'com.github.rajputmukesh748:EasyDataStore:1.0.0'
        }
 
 
@@ -102,4 +102,4 @@ library and access all function to store data without any error or issues.
     CallDataStore.clearAllData()
     
     
- Thank you.
+ <b>Thank you.</b>
