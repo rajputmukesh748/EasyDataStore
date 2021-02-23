@@ -25,7 +25,20 @@ library and access all function to store data without any error or issues.
  2.) Second add this dependency in your project for data store setup
  
      //Data Store  Setup
-     
+      Step 1. Add the JitPack repository to your build file
+      Add it in your root build.gradle at the end of repositories:
+
+       allprojects {
+        repositories {
+         ...
+         maven { url 'https://jitpack.io' }
+        }
+       }
+       
+      Step 2. Add the dependency
+       dependencies {
+               implementation 'com.github.rajputmukesh748:EasyDataStore:Tag'
+       }
 
 
 <h6>Implementation</h6>
@@ -55,9 +68,9 @@ library and access all function to store data without any error or issues.
      
      
  3.) Create a Preferences keys for store data in particular key.
-     Each data type key are available in this dependency. 
-     You just need to first enter which data type key used for store data.
-     Then call getDataPreferenceKey() function with pass unique key in string.  
+       Each data type key are available in this dependency. 
+       You just need to first enter which data type key used for store data.
+       Then call getDataPreferenceKey() function with pass unique key in string.  
  
     val INT_KEY = Int.getDataPreferenceKey("loginData")
     val DOUBLE_KEY = Double.getDataPreferenceKey("loginData")
