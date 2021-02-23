@@ -25,6 +25,8 @@ class MainActivity : AppCompatActivity() {
             CallDataStore.getPreferenceData(STRING_KEY){
                 Log.e("skdnaskndkasdasd", "${it}")
             }
+            CallDataStore.clearKeyData(STRING_KEY)
+            CallDataStore.clearAllData()
         }
     }
 
