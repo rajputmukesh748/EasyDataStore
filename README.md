@@ -1,4 +1,5 @@
-# EasyDataStore
+# EasyDataStore ![](https://jitpack.io/v/rajputmukesh748/EasyDataStore.svg)
+
 
 <h5><b>Introduction</b></h5>
 <p>
