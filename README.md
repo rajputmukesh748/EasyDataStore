@@ -38,7 +38,7 @@ library and access all function to store data without any error or issues.
        
       Step 2. Add the dependency
        dependencies {
-               implementation 'com.github.rajputmukesh748:EasyDataStore:1.0.0'
+               implementation 'com.github.rajputmukesh748:EasyDataStore:2.0.0'
        }
 
 
