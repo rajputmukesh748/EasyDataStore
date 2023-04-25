@@ -4,29 +4,44 @@ import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
-import androidx.datastore.preferences.createDataStore
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.mapLatest
+import androidx.datastore.preferences.preferencesDataStore
+import java.lang.ref.WeakReference
 
 
-object EasyDataStore {
+/**
+ * Easy Data Store
+ * */
+class EasyDataStore(context: Context, databaseName: String) {
 
     /**
      * DataStore is a in-build method which is
      * Preferences type for store data in preference.
      * */
-    private lateinit var dataStore: DataStore<Preferences>
+    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(
+        name = databaseName
+    )
+
+    private var context: WeakReference<Context>? = null
 
 
     /**
-     * Create a DataStore instance using the function createDataStore().
-     * This function takes the preference name (that is a String) as a parameter
+     * Singleton Instance
      * */
-    fun initializeDataStore(context: Context, dataBaseName: Any) {
-        dataStore = context.createDataStore(
-            name = dataBaseName.toString()
-        )
+    companion object {
+        @Volatile
+        private var INSTANCE: EasyDataStore? = null
+        fun get(context: Context, databaseName: String): EasyDataStore =
+            INSTANCE ?: synchronized(this) {
+                INSTANCE ?: EasyDataStore(context, databaseName).also { INSTANCE = it }
+            }
+    }
+
+
+    /**
+     * Initializer
+     * */
+    init {
+        this.context = WeakReference(context)
     }
 
 
@@ -38,7 +53,7 @@ object EasyDataStore {
      * type of data you need to get from data store.
      * */
     suspend fun <T> getPreferenceData(key: Preferences.Key<T>, value: (T?) -> Unit) =
-        dataStore.edit { preferences ->
+        context?.get()?.dataStore?.edit { preferences ->
             value(preferences[key])
         }
 
@@ -56,7 +71,7 @@ object EasyDataStore {
         key: Preferences.Key<T>,
         storeData: T
     ) {
-        dataStore.edit { preferences ->
+        context?.get()?.dataStore?.edit { preferences ->
             preferences[key] = storeData
         }
     }
@@ -72,7 +87,7 @@ object EasyDataStore {
      * particular key data in app.
      * */
     suspend fun <T> clearKeyData(key: Preferences.Key<T>) {
-        dataStore.edit { preferences ->
+        context?.get()?.dataStore?.edit { preferences ->
             preferences.remove(key)
         }
     }
@@ -86,9 +101,10 @@ object EasyDataStore {
      * you will need to call and they clear all data.
      * */
     suspend fun clearAllData() {
-        dataStore.edit { preferences ->
+        context?.get()?.dataStore?.edit { preferences ->
             preferences.clear()
         }
     }
+
 
 }

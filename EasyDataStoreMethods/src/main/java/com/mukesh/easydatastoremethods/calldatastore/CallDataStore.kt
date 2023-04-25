@@ -3,11 +3,17 @@ package com.mukesh.easydatastoremethods.calldatastore
 import android.content.Context
 import android.util.Log
 import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.createDataStore
 import com.mukesh.easydatastoremethods.easydatastore.EasyDataStore
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import java.lang.ref.WeakReference
 
 object CallDataStore {
+
+    private var easyDataStore: WeakReference<EasyDataStore>? = null
 
     /**
      * Coroutine Exception Handler is user to handle any
@@ -29,8 +35,23 @@ object CallDataStore {
      * Create a DataStore instance using the function createDataStore().
      * This function takes the preference name (that is a String) as a parameter
      * */
+    @Deprecated(
+        message = "New data store not available this method.",
+        replaceWith = ReplaceWith("build(context, databaseName)"),
+        level = DeprecationLevel.ERROR
+    )
     fun initializeDataStore(context: Context, dataBaseName: Any) {
-        EasyDataStore.initializeDataStore(context,dataBaseName)
+//        EasyDataStore.initializeDataStore(context,dataBaseName)
+    }
+
+
+    /**
+     * Create a DataStore instance using the function createDataStore().
+     * This function takes the preference name (that is a String) as a parameter
+     * */
+    fun build(context: Context, dataBaseName: String) {
+        if (easyDataStore != null) easyDataStore =
+            WeakReference(EasyDataStore.get(databaseName = dataBaseName, context = context))
     }
 
     /**
@@ -51,7 +72,7 @@ object CallDataStore {
      * */
     fun <T> getPreferenceData(key: Preferences.Key<T>, value: (T?) -> Unit) {
         CoroutineScope(Dispatchers.IO + coroutineExceptionHandler + Job()).launch {
-            EasyDataStore.getPreferenceData(key) { data ->
+            easyDataStore?.get()?.getPreferenceData(key) { data ->
                 CoroutineScope(Dispatchers.Main).launch {
                     value(data)
                 }
@@ -77,7 +98,7 @@ object CallDataStore {
         storeData: T
     ) {
         CoroutineScope(Dispatchers.IO + coroutineExceptionHandler + Job()).launch {
-            EasyDataStore.storeData(key, storeData)
+            easyDataStore?.get()?.storeData(key, storeData)
         }
     }
 
@@ -95,7 +116,7 @@ object CallDataStore {
      * */
     fun <T> clearKeyData(key: Preferences.Key<T>) {
         CoroutineScope(Dispatchers.IO + coroutineExceptionHandler + Job()).launch {
-            EasyDataStore.clearKeyData(key)
+            easyDataStore?.get()?.clearKeyData(key)
         }
     }
 
@@ -110,7 +131,7 @@ object CallDataStore {
      * */
     fun clearAllData() {
         CoroutineScope(Dispatchers.IO + coroutineExceptionHandler + Job()).launch {
-            EasyDataStore.clearAllData()
+            easyDataStore?.get()?.clearAllData()
         }
     }
 
