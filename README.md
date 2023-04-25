@@ -16,11 +16,11 @@ library and access all function to store data without any error or issues.
  1.) First need to add data store in your app
   
     //DataStore
-        implementation "androidx.datastore:datastore-preferences:1.0.0-alpha06"
-        implementation "androidx.datastore:datastore-core:1.0.0-alpha06"
+        implementation "androidx.datastore:datastore-preferences:1.1.0-alpha04"
+        implementation "androidx.datastore:datastore-core:1.1.0-alpha04"
  
      //Coroutines and LifeCycle Libraries
-         implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1"
+         implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4"
          
          
  2.) Second add this dependency in your project for data store setup
@@ -49,7 +49,7 @@ library and access all function to store data without any error or issues.
 
          override fun onCreate() {
              super.onCreate()
-             CallDataStore.initializeDataStore(
+             CallDataStore.build(
                  context = applicationContext,
                  dataBaseName = "DemoAppData"
              )
